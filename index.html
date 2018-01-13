@@ -59,7 +59,31 @@
         </div>
 
         <script>
-               
+                function validaForm(){
+                    var erro = 0;  
+                    //listar inputs do form
+                    $('.fm-master input').each(function() {
+                        var valor = $(this).val();
+                        if(!valor || valor === "" || valor=='undefined'||valor=='null' ){ // falso = vazio/nao existe
+                            var campo = $(this).data('campo');
+                            var msg= 'Por favor preencha ' + campo ;
+                            $(this).after('<small class="cl-cl3 msgErroFm"> ' + msg + '</small>');
+                            erro++;
+                        }else{
+                            $('.msgErroFm').remove();
+                        }
+                        //console.log( valor )  ;
+                    });
+
+                    if(erro < 1 ){
+                        $('.fm-master').submit();
+                    }else{
+                        alert('preencha form');
+                    }
+
+                    //var fm = $('.fm-master').serialize();
+                    //console.log(fm);
+                }
     
                 function consomeApi(){
                     linkApi = '';
