@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" >
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" ></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+        <style>
+            .cl-cl3{ color: red; }
+            .bg-cl1{ background: red; }
+            .bg-cl2{ background: green; }
+            .bg-cl3{ background: #ccc; }
+            .bg-cl4{ background: purple; }
+            .meuIcone{ font-size: 1em; color:red; transition: all 1s !important;  position: relative; top:0;}
+            input{transition: all 1s; }
+        </style>
+
+       
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-sm-12 col-md-3  "></div>
+            <div class="col-sm-12 col-md-6 bg-cl3">
+                <form class="fm-master" method="post" action="verificaLogin.php">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email </label>
+                        <input type="email" name="email"  data-campo="Email"  data-teste="" class="form-control fm-email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Idade</label>
+                        <input type="number" name="number"  data-campo="Idade" class="form-control fm-email onlyNumbers" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input type="password" name="password" data-campo="Senha"  class="form-control fm-pass" id="exampleInputPassword1" data-metros="500" placeholder="Password">
+                    </div>
+                    <!-- button type="submit" class="btn btn-primary">Submit</button -->
+                    <a href="#!" class="btn btn-primary btn-block container-btns" onclick="validaForm()"> 
+                        <i class="fa fa-music meuIcone"></i>
+                        Enviar 
+                        <i class="fa fa-headphones meuIcone"></i>
+                    </a>
+                </form>
+            </div>
+
+        </div>
+      
+
+        <script>
+                function validaForm(){
+                    var erro = 0;  
+                    //listar inputs do form
+                    $('.fm-master input').each(function() {
+                        var valor = $(this).val();
+                        if(!valor || valor === "" || valor=='undefined'||valor=='null' ){ // falso = vazio/nao existe
+                            var campo = $(this).data('campo');
+                            var msg= 'Por favor preencha ' + campo ;
+                            $(this).after('<small class="cl-cl3 msgErroFm"> ' + msg + '</small>');
+                            erro++;
+                        }else{
+                            $('.msgErroFm').remove();
+                        }
+                        //console.log( valor )  ;
+                    });
+                    if(erro < 1 ){
+                        $('.fm-master').submit();
+                    }else{
+                        alert('preencha form');
+                    }
+                    //var fm = $('.fm-master').serialize();
+                    //console.log(fm);
+                }
+    
+                $(document).ready(function(){
+    
+                    setTimeout(function(){
+                        $('.container-btns .meuIcone').css({ "top":"-10px"});
+                        setTimeout(function(){
+                            $('.container-btns .meuIcone').css({ "top":"0" });
+                        }, 1000);
+                        
+                    }, 2000);
+                });
+            </script>
+    </body>
+</html>
